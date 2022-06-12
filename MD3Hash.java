@@ -1,7 +1,7 @@
 /*********************************************************
-* ×÷Õß£ºÎéÒ«êÍ               Author: YaoHui.Wu           *
-* ¿ªÔ´ÈÕÆÚ£º2022Äê6ÔÂ11ÈÕ    Open Source Date: 2022-6-11 *
-* ¹ú¼Ò£ºÖÐ¹ú                 Country: China              *
+* ä½œè€…ï¼šä¼è€€æ™–               Author: YaoHui.Wu           *
+* å¼€æºæ—¥æœŸï¼š2022å¹´6æœˆ11æ—¥    Open Source Date: 2022-6-11 *
+* å›½å®¶ï¼šä¸­å›½                 Country: China              *
 *********************************************************/
 
 import java.io.*;
@@ -24,7 +24,7 @@ public class MD3Hash
         {
             for(int i = 23; i > -1; --i)
             {
-                baTrinary[i] = (byte)(lNumeric % 3 & 255) ;
+                baTrinary[i] = (byte)(lNumeric % 3 & 255);
 
                 lNumeric /= 3;
             }
