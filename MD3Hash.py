@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
  
 #********************************************************
-# ×÷Õß£ºÎéÒ«êÍ              Author: YaoHui.Wu           *
-# ¿ªÔ´ÈÕÆÚ£º2022Äê6ÔÂ11ÈÕ   Open Source Date: 2022-6-11 *
-# ¹ú¼Ò£ºÖĞ¹ú                Country: China              *
+# ä½œè€…ï¼šä¼è€€æ™–              Author: YaoHui.Wu           *
+# å¼€æºæ—¥æœŸï¼š2022å¹´6æœˆ11æ—¥   Open Source Date: 2022-6-11 *
+# å›½å®¶ï¼šä¸­å›½                Country: China              *
 #********************************************************
 
 import os, sys
@@ -13,17 +13,15 @@ def Usage():
     print("Usage: python MD3Hash YouWantToHash.File")
 
 def Ternary(iNumeric):
-    i, lTrinary = 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    lTrinary = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    if iNumeric:
-        while iNumeric:
+    if iNumeric != 0:
+        for i in range(23, -1, -1):
             iNumeric, iRemainder = divmod(iNumeric, 3)
 
             lTrinary[i] = iRemainder
 
-            i += 1
-
-    return lTrinary[::-1]
+    return lTrinary
 
 # 0 0 0
 # 0 1 1
@@ -631,7 +629,7 @@ if __name__ == "__main__":
         lDigest3 = [1, 1, 2, 0, 1, 0, 0, 2, 1, 2, 0, 0, 2, 2, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0]
 
         for i in range(0, iBytesLeft, 64):
-            lTrinary = [];
+            lTrinary = []
 
             for j in range(16):
                 lTrinary.append(Ternary( baData[i + 4 * j] + (baData[i + 4 * j + 1] << 8) + (baData[i + 4 * j + 2] << 16) + (baData[i + 4 * j + 3] << 24)))
