@@ -392,7 +392,7 @@ Sub II(a As UByte Pointer, b As UByte Pointer, c As UByte Pointer, d As UByte Po
 End Sub
 
 Sub MD3Hash(a As UByte Pointer, b As UByte Pointer, c As UByte Pointer, d As UByte Pointer, e() As UByte)
-    Const bShift11 = 2, bShift12 = 3, bShift13 = 4, bShift14 = 5, bShift21 = 6, bShift22 = 7, bShift23 = 8, bShift24 = 11, bShift31 = 10, bShift32 = 13, bShift33 = 14, bShift34 = 17, bShift41 = 16, bShift42 = 19, bShift43 = 22, bShift44 = 23
+    Const bShift11 = 2, bShift12 = 22, bShift13 = 3, bShift14 = 21, bShift21 = 5, bShift22 = 15, bShift23 = 7, bShift24 = 14, bShift31 = 11, bShift32 = 12, bShift33 = 13, bShift34 = 10, bShift41 = 17, bShift42 = 6, bShift43 = 19, bShift44 = 4
 
     Dim As UByte k0(23) => {2, 1, 1, 1, 2, 2, 0, 1, 2, 2, 1, 1, 2, 1, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0}
 

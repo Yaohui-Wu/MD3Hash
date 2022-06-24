@@ -12,35 +12,35 @@
 
 #define    lShift11    2
 
-#define    lShift12    3
+#define    lShift12    22
 
-#define    lShift13    4
+#define    lShift13    3
 
-#define    lShift14    5
+#define    lShift14    21
 
-#define    lShift21    6
+#define    lShift21    5
 
-#define    lShift22    7
+#define    lShift22    15
 
-#define    lShift23    8
+#define    lShift23    7
 
-#define    lShift24    11
+#define    lShift24    14
 
-#define    lShift31    10
+#define    lShift31    11
 
-#define    lShift32    13
+#define    lShift32    12
 
-#define    lShift33    14
+#define    lShift33    13
 
-#define    lShift34    17
+#define    lShift34    10
 
-#define    lShift41    16
+#define    lShift41    17
 
-#define    lShift42    19
+#define    lShift42    6
 
-#define    lShift43    22
+#define    lShift43    19
 
-#define    lShift44    23
+#define    lShift44    4
 
 void Usage()
 {
@@ -826,35 +826,35 @@ long long main(long long argc,
 
         stat(argv[1], &tStatFileSize);
 
-        long long lFileSize = tStatFileSize.st_size;
+        unsigned long long ulFileSize = tStatFileSize.st_size;
 
-        if(lFileSize == 0)
+        if(ulFileSize == 0)
         {
             printf("There is no data in file [%s], 0 byte.\n", argv[1]);
 
             return -1;
         }
 
-        long long lBytesLeft = lFileSize & 63;
+        unsigned long long ulBytesLeft = ulFileSize & 63;
 
-        if(lBytesLeft == 0)
+        if(ulBytesLeft == 0)
         {
-            lBytesLeft = lFileSize + 64;
+            ulBytesLeft = ulFileSize + 64;
         }
-        else if(lBytesLeft < 54)
+        else if(ulBytesLeft < 54)
         {
-            lBytesLeft = lFileSize - lBytesLeft + 64;
+            ulBytesLeft = ulFileSize - ulBytesLeft + 64;
         }
-        else if(lBytesLeft > 53)
+        else if(ulBytesLeft > 53)
         {
-            lBytesLeft = lFileSize - lBytesLeft + 128;
+            ulBytesLeft = ulFileSize - ulBytesLeft + 128;
         }
 
-        unsigned char *ucpData = malloc(lBytesLeft);
+        unsigned char *ucpData = malloc(ulBytesLeft);
 
         int fdData = open(argv[1], O_BINARY | O_RDONLY, S_IREAD | S_IWRITE);
 
-        read(fdData, ucpData, lFileSize);
+        read(fdData, ucpData, ulFileSize);
 
         close(fdData);
 
@@ -865,17 +865,17 @@ long long main(long long argc,
 
         for(long long i = 0; i < 5; ++i)
         {
-            ucpData[i + lFileSize] = ((unsigned char*)&lFileSize)[i];
+            ucpData[i + ulFileSize] = ((unsigned char*)&ulFileSize)[i];
         }
 
-        for(long long j = lFileSize + 5, k = 0; j < lBytesLeft - 5; ++j, ++k)
+        for(long long j = ulFileSize + 5, k = 0; j < ulBytesLeft - 5; ++j, ++k)
         {
             ucpData[j] = ucaPadding[k];
         }
 
         for(long long l = 5; l > 0; --l)
         {
-            ucpData[lBytesLeft - l] = ((unsigned char*)&lFileSize)[l - 1];
+            ucpData[ulBytesLeft - l] = ((unsigned char*)&ulFileSize)[l - 1];
         }
 
         unsigned char ucaDigest0[] = {1, 2, 1, 0, 0, 0, 2, 1, 2, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0},
@@ -886,7 +886,7 @@ long long main(long long argc,
 
                       ucaDigest3[] = {1, 1, 2, 0, 1, 0, 0, 2, 1, 2, 0, 0, 2, 2, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0};
 
-        for(long long i = 0; i < lBytesLeft; i += 64)
+        for(long long i = 0; i < ulBytesLeft; i += 64)
         {
             unsigned int *uipData = (unsigned int*)(ucpData + i);
 

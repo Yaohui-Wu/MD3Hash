@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
- 
+
 #********************************************************
-# ‰ΩúËÄÖÔºö‰ºçËÄÄÊôñ              Author: YaoHui.Wu           *
-# ÂºÄÊ∫êÊó•ÊúüÔºö2022Âπ¥6Êúà11Êó•   Open Source Date: 2022-6-11 *
-# ÂõΩÂÆ∂Ôºö‰∏≠ÂõΩ                Country: China              *
+# ◊˜’ﬂ£∫ŒÈ“´ÍÕ              Author: YaoHui.Wu           *
+# ø™‘¥»’∆⁄£∫2022ƒÍ6‘¬11»’   Open Source Date: 2022-6-11 *
+# π˙º“£∫÷–π˙                Country: China              *
 #********************************************************
 
 import os, sys
@@ -12,16 +12,11 @@ import os, sys
 def Usage():
     print("Usage: python MD3Hash YouWantToHash.File")
 
-def Ternary(iNumeric):
-    lTrinary = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+def Ternary(iNumeric, lTrinary):
+    for i in range(23, -1, -1):
+        iNumeric, iRemainder = divmod(iNumeric, 3)
 
-    if iNumeric != 0:
-        for i in range(23, -1, -1):
-            iNumeric, iRemainder = divmod(iNumeric, 3)
-
-            lTrinary[i] = iRemainder
-
-    return lTrinary
+        lTrinary[i] = iRemainder
 
 # 0 0 0
 # 0 1 1
@@ -285,35 +280,35 @@ def II(a, b, c, d, e, iShift, k):
 def MD3Hash(a, b, c, d, e):
     iShift11 = 2
 
-    iShift12 = 3
+    iShift12 = 22
 
-    iShift13 = 4
+    iShift13 = 3
 
-    iShift14 = 5
+    iShift14 = 21
 
-    iShift21 = 6
+    iShift21 = 5
 
-    iShift22 = 7
+    iShift22 = 15
 
-    iShift23 = 8
+    iShift23 = 7
 
-    iShift24 = 11
+    iShift24 = 14
 
-    iShift31 = 10
+    iShift31 = 11
 
-    iShift32 = 13
+    iShift32 = 12
 
-    iShift33 = 14
+    iShift33 = 13
 
-    iShift34 = 17
+    iShift34 = 10
 
-    iShift41 = 16
+    iShift41 = 17
 
-    iShift42 = 19
+    iShift42 = 6
 
-    iShift43 = 22
+    iShift43 = 19
 
-    iShift44 = 23
+    iShift44 = 4
 
     k0 = (2, 1, 1, 1, 2, 2, 0, 1, 2, 2, 1, 1, 2, 1, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0)
 
@@ -628,11 +623,26 @@ if __name__ == "__main__":
 
         lDigest3 = [1, 1, 2, 0, 1, 0, 0, 2, 1, 2, 0, 0, 2, 2, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0]
 
-        for i in range(0, iBytesLeft, 64):
-            lTrinary = []
+        lTrinary = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
+        for i in range(0, iBytesLeft, 64):
             for j in range(16):
-                lTrinary.append(Ternary( baData[i + 4 * j] + (baData[i + 4 * j + 1] << 8) + (baData[i + 4 * j + 2] << 16) + (baData[i + 4 * j + 3] << 24)))
+                Ternary(baData[i + 4 * j] + (baData[i + 4 * j + 1] << 8) + (baData[i + 4 * j + 2] << 16) + (baData[i + 4 * j + 3] << 24), lTrinary[j])
 
             MD3Hash(lDigest0, lDigest1, lDigest2, lDigest3, lTrinary)
 

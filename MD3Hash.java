@@ -1,15 +1,13 @@
 /*********************************************************
-* ä½œè€…ï¼šä¼è€€æ™–               Author: YaoHui.Wu           *
-* å¼€æºæ—¥æœŸï¼š2022å¹´6æœˆ11æ—¥    Open Source Date: 2022-6-11 *
-* å›½å®¶ï¼šä¸­å›½                 Country: China              *
+* ×÷Õß£ºÎéÒ«êÍ               Author: YaoHui.Wu           *
+* ¿ªÔ´ÈÕÆÚ£º2022Äê6ÔÂ11ÈÕ    Open Source Date: 2022-6-11 *
+* ¹ú¼Ò£ºÖĞ¹ú                 Country: China              *
 *********************************************************/
 
 import java.io.*;
 
 public class MD3Hash
 {
-    final static int iShift11 = 2, iShift12 = 3, iShift13 = 4, iShift14 = 5, iShift21 = 6, iShift22 = 7, iShift23 = 8, iShift24 = 11, iShift31 = 10, iShift32 = 13, iShift33  = 14, iShift34 = 17, iShift41 = 16, iShift42 = 19, iShift43 = 22, iShift44 = 23;
-
     private static void Usage()
     {
         System.out.printf("Usage: java MD3Hash YouWantToHash.File\n");
@@ -524,6 +522,8 @@ public class MD3Hash
                                     byte[] d,
                                     byte[][] e)
     {
+        final int iShift11 = 2, iShift12 = 22, iShift13 = 3, iShift14 = 21, iShift21 = 5, iShift22 = 15, iShift23 = 7, iShift24 = 14, iShift31 = 11, iShift32 = 12, iShift33  = 13, iShift34 = 10, iShift41 = 17, iShift42 = 6, iShift43 = 19, iShift44 = 4;
+
         final byte[] k0 = {2, 1, 1, 1, 2, 2, 0, 1, 2, 2, 1, 1, 2, 1, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0},
 
                      k1 = {1, 1, 2, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1, 1, 0, 2, 0, 0, 1, 0, 1, 0, 0, 0},

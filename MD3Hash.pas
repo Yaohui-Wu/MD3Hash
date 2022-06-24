@@ -13,35 +13,35 @@ Type
 Const
     bShift11 = 2;
 
-    bShift12 = 3;
+    bShift12 = 22;
 
-    bShift13 = 4;
+    bShift13 = 3;
 
-    bShift14 = 5;
+    bShift14 = 21;
 
-    bShift21 = 6;
+    bShift21 = 5;
 
-    bShift22 = 7;
+    bShift22 = 15;
 
-    bShift23 = 8;
+    bShift23 = 7;
 
-    bShift24 = 11;
+    bShift24 = 14;
 
-    bShift31 = 10;
+    bShift31 = 11;
 
-    bShift32 = 13;
+    bShift32 = 12;
 
-    bShift33 = 14;
+    bShift33 = 13;
 
-    bShift34 = 17;
+    bShift34 = 10;
 
-    bShift41 = 16;
+    bShift41 = 17;
 
-    bShift42 = 19;
+    bShift42 = 6;
 
-    bShift43 = 22;
+    bShift43 = 19;
 
-    bShift44 = 23;
+    bShift44 = 4;
 
     baPadding : Array[0..63] Of Byte = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 15, 25, 35, 45, 55, 65, 75, 85, 95, 105);
 
@@ -785,7 +785,6 @@ Const
     k63 : TrinaryArray = (2, 0, 2, 0, 2, 2, 1, 0, 0, 2, 0, 1, 1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0);
 
 Begin
-
     FF(a, b, c, d, e[ 0], bShift11, k0);
 
     FF(b, c, d, a, e[ 1], bShift12, k1);
@@ -918,11 +917,11 @@ End;
 Var
     fdData : File;
 
-    ulFileSize, ulBytesLeft : QWord;
+    i, j, ulFileSize, ulBytesLeft : QWord;
 
     bpData : PByte;
 
-    i, j, k, l : LongWord;
+    k, l : Byte;
 
     baDigest0 : TrinaryArray = (1, 2, 1, 0, 0, 0, 2, 1, 2, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0);
 
